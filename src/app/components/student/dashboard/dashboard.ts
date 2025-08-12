@@ -17,8 +17,8 @@ export class Dashboard {
 
   // إحصائيات مختصرة
   stats = {
-    courses: 3,
-    completedPercent: 42,
+    courses: 6,
+    completedPercent: 57,
     certificates: 1,
     hours: 56
   };

@@ -8,14 +8,14 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrls: ['./navbar.css']
 })
 export class Navbar {
-  isLoggedIn = false; // أو false للتجربة
+  isLoggedIn = true; // أو false للتجربة
   notificationsOpen = false;
   profileMenuOpen = false;
   mobileMenuOpen = false;
 
   user = {
-    name: 'Test User',
-    avatarUrl: 'test.jpg' // سيبها فاضية عشان يجرب الـ initials
+    name: 'Amr Mohamed',
+    avatarUrl: 'imgs/gojosatoro.jpeg' // سيبها فاضية عشان يجرب الـ initials
   };
 
   toggleNotifications() {

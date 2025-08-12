@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Hero } from './hero/hero';
-import { Testimonials } from './testimonials/testimonials';
 import { Statistics } from './statistics/statistics';
 import { Feedback } from './feedback/feedback';
 import { CoursesPreview } from './courses-preview/courses-preview';
@@ -12,7 +11,7 @@ import { FAQ } from './faq/faq';
 
 @Component({
   selector: 'app-home',
-  imports: [Hero , Testimonials,Statistics,Feedback,CoursesPreview,Features,Partners,Journey,Mentors,FAQ],
+  imports: [Hero ,Statistics,Feedback,CoursesPreview,Features,Partners,Journey,Mentors,FAQ],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })

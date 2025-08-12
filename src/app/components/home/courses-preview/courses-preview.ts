@@ -13,7 +13,7 @@ export class CoursesPreview {
       id: 1,
       title: 'Mastering Angular for Beginners',
       instructor: 'John Doe',
-      image: 'https://source.unsplash.com/random/800x600?code',
+      image: 'assets/courseimg1.webp',
       rating: 5,
       reviews: 120,
       price: 49.99,
@@ -23,7 +23,7 @@ export class CoursesPreview {
       id: 2,
       title: 'React Fundamentals',
       instructor: 'Jane Smith',
-      image: 'https://source.unsplash.com/random/800x600?react',
+      image: 'assets/courseimg2.webp',
       rating: 4,
       reviews: 85,
       price: 39.99,
@@ -33,11 +33,41 @@ export class CoursesPreview {
       id: 3,
       title: 'Node.js API Development',
       instructor: 'Mike Johnson',
-      image: 'https://source.unsplash.com/random/800x600?node',
+      image: 'assets/nodejs.png',
       rating: 5,
       reviews: 200,
       price: 59.99,
       description: 'Create robust backends using Node.js, Express, and MongoDB.'
+    },
+    {
+      id: 4,
+      title: 'Python for Data Science',
+      instructor: 'Emily Davis',
+      image: 'assets/courseimg4.jpeg',
+      rating: 3,
+      reviews: 150,
+      price: 44.99,
+      description: 'Analyze data and build machine learning models with Python.'
+    },
+    {
+      id: 5,
+      title: 'Web Development Bootcamp',
+      instructor: 'Chris Lee',
+      image: 'assets/courseimg5.jpeg',
+      rating: 4,
+      reviews: 300,
+      price: 59.99,
+      description: 'Become a full-stack web developer with this comprehensive bootcamp.'
+    },
+    {
+      id: 6,
+      title: 'Introduction to Machine Learning',
+      instructor: 'David Brown',
+      image: 'assets/courseimg6.jpeg',
+      rating: 5,
+      reviews: 180,
+      price: 54.99,
+      description: 'Learn the fundamentals of machine learning and data analysis.'
     }
   ];
 }

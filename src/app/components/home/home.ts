@@ -4,10 +4,15 @@ import { Testimonials } from './testimonials/testimonials';
 import { Statistics } from './statistics/statistics';
 import { Feedback } from './feedback/feedback';
 import { CoursesPreview } from './courses-preview/courses-preview';
+import { Features } from './features/features';
+import { Partners } from './partners/partners';
+import { Journey } from './journey/journey';
+import { Mentors } from './mentors/mentors';
+import { FAQ } from './faq/faq';
 
 @Component({
   selector: 'app-home',
-  imports: [Hero , Testimonials,Statistics,Feedback,CoursesPreview],
+  imports: [Hero , Testimonials,Statistics,Feedback,CoursesPreview,Features,Partners,Journey,Mentors,FAQ],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })

@@ -1,0 +1,24 @@
+<section class="bg-white py-16">
+    <div class="max-w-4xl mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Frequently Asked Questions</h2>
+
+        <div class="space-y-4">
+            @for (item of faqs; track item.question) {
+                <div class="border rounded-lg shadow-sm">
+                    <button 
+                        (click)="toggleFAQ($index)" 
+                        class="w-full text-left px-6 py-4 flex justify-between items-center hover:bg-gray-50"
+                    >
+                        <span class="font-semibold text-gray-700">{{ item.question }}</span>
+                        <span class="text-gray-500">{{ openIndex === $index ? '−' : '+' }}</span>
+                    </button>
+                    @if (openIndex === $index) {
+                        <div class="px-6 pb-4 text-gray-600">
+                            {{ item.answer }}
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</section>

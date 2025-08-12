@@ -1,20 +1,21 @@
 import { Component } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-navbar',
-  imports: [],
+  imports: [MatIconModule],
   templateUrl: './navbar.html',
   styleUrls: ['./navbar.css']
 })
 export class Navbar {
-  isLoggedIn = true; // أو false للتجربة
+  isLoggedIn = false; // أو false للتجربة
   notificationsOpen = false;
   profileMenuOpen = false;
   mobileMenuOpen = false;
 
   user = {
     name: 'Test User',
-    avatarUrl: '' // سيبها فاضية عشان يجرب الـ initials
+    avatarUrl: 'test.jpg' // سيبها فاضية عشان يجرب الـ initials
   };
 
   toggleNotifications() {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component , Input } from '@angular/core';
 
 @Component({
   selector: 'app-course-video-player',
@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './course-video-player.css'
 })
 export class CourseVideoPlayer {
-
+  @Input() videoUrl: string = '';
 }

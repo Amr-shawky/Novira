@@ -4,22 +4,28 @@
 
     <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
       <div class="text-center">
-        <img src="assets/person1.jpg" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover shadow-md" alt="Mentor">
-        <h3 class="text-lg font-semibold text-gray-700">Ali Mohamed</h3>
+@defer (on idle) {
+  <img src="assets/person1.jpeg" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover shadow-md" alt="Mentor">
+}
+        <h3 class="text-lg font-semibold text-gray-700">sarah Mohamed</h3>
         <p class="text-gray-500 text-sm">Data Science Expert</p>
       </div>
       <div class="text-center">
-        <img src="assets/person2.jpg" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover shadow-md" alt="Mentor">
+        <img src="assets/person2.jpeg" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover shadow-md" alt="Mentor">
         <h3 class="text-lg font-semibold text-gray-700">Michael Lee</h3>
         <p class="text-gray-500 text-sm">UI/UX Designer</p>
       </div>
       <div class="text-center">
-        <img src="assets/person3.jpg" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover shadow-md" alt="Mentor">
+        @defer (on idle) {
+          <img src="assets/person3.jpeg" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover shadow-md" alt="Mentor">
+        }
         <h3 class="text-lg font-semibold text-gray-700">Aisha Khan</h3>
         <p class="text-gray-500 text-sm">Web Development</p>
       </div>
       <div class="text-center">
-        <img src="assets/person4.jpg" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover shadow-md" alt="Mentor">
+        @defer (on idle) {
+          <img src="assets/person4.jpg" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover shadow-md" alt="Mentor">
+        }
         <h3 class="text-lg font-semibold text-gray-700">David Smith</h3>
         <p class="text-gray-500 text-sm">Business Strategy</p>
       </div>

@@ -1,0 +1,30 @@
+<section class="max-w-7xl mx-auto px-4 py-10 grid grid-cols-1 lg:grid-cols-4 gap-6">
+  
+  <!-- Filter Sidebar -->
+  <aside class="lg:col-span-1">
+    <app-filter-sidebar
+      [filters]="filters()"
+      (filtersChanged)="applyFilters($event)">
+    </app-filter-sidebar>
+  </aside>
+
+  <!-- Courses Content -->
+  <div class="lg:col-span-3 space-y-6">
+    
+    <!-- If a course is selected -->
+    @if (selectedCourseId()) {
+      <app-course-details
+        (back)="clearSelection()">
+      </app-course-details>
+
+      <app-course-video-player [videoUrl]="'/'"></app-course-video-player>
+
+      <app-course-progress [progress]="31"></app-course-progress>
+    }
+
+    <!-- If no course is selected -->
+
+<app-course-list [courses]="courses"></app-course-list>
+
+  </div>
+</section>

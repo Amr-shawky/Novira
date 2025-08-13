@@ -8,5 +8,6 @@ import { Component , Input } from '@angular/core';
 })
 export class CourseProgress {
   @Input() progress: number = 0;
+  
 
 }

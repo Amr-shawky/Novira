@@ -15,10 +15,10 @@
       <!-- Navigation Links -->
       <div class="flex items-center space-x-6">
         <a [routerLink]="['']" class="text-gray-700 hover:text-indigo-600">Home</a>
-        <a [routerLink]="['']" class="text-gray-700 hover:text-indigo-600">Explore</a>
+        <a [routerLink]="['courses']" class="text-gray-700 hover:text-indigo-600">Explore</a>
 
         @if (isLoggedIn) {
-        <a routerLink="/my-courses" class="text-gray-700 hover:text-indigo-600"
+        <a routerLink="/profile" class="text-gray-700 hover:text-indigo-600"
           >My Courses</a
         >
         }

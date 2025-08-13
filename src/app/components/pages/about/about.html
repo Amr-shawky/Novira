@@ -1,0 +1,40 @@
+<section class="bg-white py-16">
+  <div class="max-w-6xl mx-auto px-4">
+    <!-- Page Title -->
+    <h1 class="text-3xl font-bold text-center text-gray-900 mb-6">About Us</h1>
+    <p class="text-center text-gray-600 max-w-3xl mx-auto mb-12">
+      At <strong>Novira</strong>, we believe that education should be accessible, engaging, and inspiring.
+      Our mission is to empower learners everywhere with high-quality online courses and resources.
+    </p>
+
+    <!-- Mission & Vision -->
+    <div class="grid md:grid-cols-2 gap-10 mb-16">
+      <div class="bg-gray-50 p-6 rounded-lg shadow">
+        <h2 class="text-xl font-semibold mb-3">Our Mission</h2>
+        <p class="text-gray-700">
+          To provide learners worldwide with affordable, flexible, and engaging online education that helps them
+          achieve their career and personal goals.
+        </p>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-lg shadow">
+        <h2 class="text-xl font-semibold mb-3">Our Vision</h2>
+        <p class="text-gray-700">
+          We envision a world where anyone, anywhere, can learn new skills and unlock their full potential,
+          regardless of their background.
+        </p>
+      </div>
+    </div>
+
+    <!-- Team -->
+    <h2 class="text-2xl font-bold text-center text-gray-900 mb-8">Meet Our Team</h2>
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
+      @for(member of team; track member.name) {
+        <div class="text-center">
+          <img [src]="member.img" [alt]="member.name" class="w-32 h-32 mx-auto rounded-full object-cover shadow-md">
+          <h3 class="mt-4 text-lg font-semibold text-gray-800">{{ member.name }}</h3>
+          <p class="text-sm text-gray-500">{{ member.role }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>

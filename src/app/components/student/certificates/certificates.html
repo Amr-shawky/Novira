@@ -1,1 +1,25 @@
-<p>certificates works!</p>
+<section class="py-10">
+  <h2 class="text-2xl font-bold mb-6 text-gray-800">Certificates</h2>
+
+  <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    @for(cert of certificates; track $index){
+    <div
+      class="bg-white rounded-xl shadow-lg overflow-hidden border hover:shadow-xl transition"
+    >
+      <img
+        [src]="cert.image"
+        alt="Certificate Image"
+        class="w-full h-40 object-cover"
+      />
+      <div class="p-4">
+        <h3 class="font-semibold text-lg text-indigo-700">{{ cert.title }}</h3>
+        <p class="text-sm text-gray-600">Instructor: {{ cert.instructor }}</p>
+        <p class="text-sm text-gray-500">Date: {{ cert.date }}</p>
+        <p class="text-xs text-gray-400 mt-1">
+          Certificate ID: {{ cert.certificateId }}
+        </p>
+      </div>
+    </div>
+    }
+  </div>
+</section>

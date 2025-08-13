@@ -1,3 +1,176 @@
-<div class="aspect-w-16 aspect-h-9 bg-black rounded-lg overflow-hidden">
-  <iframe [src]="videoUrl" frameborder="0" allowfullscreen class="w-full h-full"></iframe>
-</div>
+@if (course) {
+  <div class="min-h-screen bg-gray-50">
+    <!-- Top bar (breadcrumb + actions) -->
+    <div class="max-w-7xl mx-auto px-4 pt-6 pb-3">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2 text-sm text-gray-500">
+          @for (crumb of course.breadcrumb; track crumb) {
+            <span class="inline-flex items-center gap-1">
+              <mat-icon fontIcon="chevron_right" class="text-gray-400 text-base"></mat-icon>
+              {{ crumb }}
+            </span>
+          }
+        </div>
+
+        <div class="flex items-center gap-3">
+          <button class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border hover:bg-gray-100">
+            <mat-icon fontIcon="share"></mat-icon>
+            Share
+          </button>
+          <button class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-indigo-600 text-white hover:bg-indigo-500">
+            <mat-icon fontIcon="school"></mat-icon>
+            Enroll Now
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main -->
+    <div class="max-w-7xl mx-auto px-4 pb-10 grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <!-- Center: player + tabs -->
+      <div class="lg:col-span-2">
+        <!-- Title + meta -->
+        <div class="flex items-center justify-between mb-3">
+          <div>
+            <h1 class="text-2xl font-bold text-gray-900">{{ course.title }}</h1>
+            <div class="mt-1 flex items-center gap-4 text-sm text-gray-600">
+              <span class="inline-flex items-center gap-1">
+                <mat-icon fontIcon="play_lesson"></mat-icon>{{ course.lessons }} lessons
+              </span>
+              <span class="inline-flex items-center gap-1">
+                <mat-icon fontIcon="schedule"></mat-icon>{{ course.duration }}
+              </span>
+              <span class="inline-flex items-center gap-1">
+                <mat-icon fontIcon="star" class="text-yellow-500"></mat-icon>{{ course.rating }}
+                <span class="text-gray-400">({{ course.reviews }} reviews)</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Video -->
+        <div class="rounded-xl overflow-hidden shadow ring-1 ring-gray-200">
+          <video controls class="w-full aspect-video bg-black">
+            <source [src]="course.videoUrl" type="video/mp4" />
+          </video>
+        </div>
+
+        <!-- Tabs (visual only for now) -->
+        <div class="mt-5 border-b">
+          <div class="flex gap-6 text-sm">
+            <button class="px-1 pb-3 -mb-px border-b-2 border-indigo-600 text-indigo-600 font-medium">
+              Overview
+            </button>
+            <button class="px-1 pb-3 text-gray-600 hover:text-indigo-600">Author</button>
+            <button class="px-1 pb-3 text-gray-600 hover:text-indigo-600">FAQ</button>
+            <button class="px-1 pb-3 text-gray-600 hover:text-indigo-600">Reviews</button>
+          </div>
+        </div>
+
+        <!-- About + Learn list -->
+        <div class="mt-5 bg-white rounded-xl shadow p-5">
+          <h3 class="text-lg font-semibold mb-2">About Course</h3>
+          <p class="text-gray-700 leading-relaxed">{{ course.description }}</p>
+
+          <h4 class="mt-5 font-semibold">What you’ll learn</h4>
+          <ul class="mt-2 grid sm:grid-cols-2 gap-2 text-gray-700">
+            @for (item of course.whatYouLearn; track item) {
+              <li class="flex items-start gap-2">
+                <mat-icon fontIcon="check_circle" class="text-green-600 mt-0.5"></mat-icon>
+                <span>{{ item }}</span>
+              </li>
+            }
+          </ul>
+        </div>
+      </div>
+
+      <!-- Right: Course content (accordion) + author -->
+      <aside class="lg:col-span-1 space-y-6">
+        <div class="bg-white rounded-xl shadow p-4">
+          <div class="flex items-center justify-between">
+            <h3 class="font-semibold text-lg">Course content</h3>
+            <span class="text-xs text-gray-500">{{ course.lessons }} lessons • {{ course.duration }}</span>
+          </div>
+
+          <div class="mt-3 divide-y">
+            @for (section of course.content; track section; let i = $index) {
+              <div class="py-2">
+                <!-- Section header -->
+                <button
+                  (click)="toggleSection(i)"
+                  class="w-full flex items-center justify-between gap-3 text-left px-2 py-2 rounded-md hover:bg-gray-50"
+                >
+                  <div class="flex items-center gap-2">
+                    <mat-icon
+                      [fontIcon]="isOpen(i) ? 'expand_less' : 'expand_more'"
+                      class="text-gray-500"
+                    ></mat-icon>
+                    <span class="font-medium">{{ section.section }}</span>
+                  </div>
+                  <span class="text-xs text-gray-500">{{ section.duration }}</span>
+                </button>
+
+                <!-- Lessons -->
+                @if (isOpen(i)) {
+                  <ul class="mt-2 space-y-1 pl-9">
+                    @for (lesson of section.lessons; track lesson) {
+                      <li
+                        class="flex items-center justify-between gap-3 text-sm px-2 py-1.5 rounded hover:bg-indigo-50"
+                      >
+                        <div class="flex items-center gap-2">
+                          <mat-icon fontIcon="play_circle" class="text-indigo-600"></mat-icon>
+                          <span>{{ lesson.title }}</span>
+                          @if (lesson.preview) {
+                            <span
+                              class="ml-1 inline-flex items-center gap-1 text-[11px] px-2 py-0.5 rounded-full bg-green-100 text-green-700"
+                            >
+                              <mat-icon fontIcon="visibility" class="text-[14px]"></mat-icon> Preview
+                            </span>
+                          }
+                        </div>
+                        <span class="text-xs text-gray-500">{{ lesson.time }}</span>
+                      </li>
+                    }
+                  </ul>
+                }
+              </div>
+            }
+          </div>
+        </div>
+
+        <!-- Author card -->
+        <div class="bg-white rounded-xl shadow p-4">
+          <h4 class="font-semibold mb-3">Author</h4>
+          <div class="flex items-center gap-3">
+            <img
+              [src]="course.author.image"
+              alt="{{ course.author.name }}"
+              class="w-12 h-12 rounded-full object-cover"
+            />
+            <div>
+              <p class="font-medium">{{ course.author.name }}</p>
+              <p class="text-xs text-gray-500">{{ course.author.role }}</p>
+              <div class="mt-1 flex items-center gap-1 text-yellow-500">
+                <mat-icon fontIcon="star"></mat-icon>
+                <mat-icon fontIcon="star"></mat-icon>
+                <mat-icon fontIcon="star"></mat-icon>
+                <mat-icon fontIcon="star"></mat-icon>
+                <mat-icon fontIcon="star"></mat-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+}
+@else {
+  <div class="max-w-3xl mx-auto p-8">
+    <div class="rounded-xl bg-red-50 border border-red-200 p-6 text-red-700">
+      <div class="flex items-center gap-2 font-semibold">
+        <mat-icon fontIcon="error"></mat-icon> Course not found
+      </div>
+      <p class="mt-1 text-sm">Make sure the course id in the URL is correct.</p>
+    </div>
+  </div>
+}

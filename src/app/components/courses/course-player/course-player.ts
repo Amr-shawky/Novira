@@ -31,17 +31,17 @@ export class CoursePlayer{
       content: <Section[]>[
         {
           section: '01: Intro',
-          duration: '22min',
+          duration: '25min',
           lessons: [
             {
               title: 'Introduction',
-              time: '2 min',
-              url: 'https://www.w3schools.com/html/mov_bbb.mp4',
+              time: '14 min',
+              url: 'https://storage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4',
             },
             {
               title: 'What is Angular?',
-              time: '5 min',
-              url: 'https://www.w3schools.com/html/movie.mp4',
+              time: '10 min',
+              url: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
             },
           ],
         },
@@ -51,8 +51,8 @@ export class CoursePlayer{
           lessons: [
             {
               title: 'Signals vs RxJS',
-              time: '14 min',
-              url: 'https://www.w3schools.com/html/mov_bbb.mp4',
+              time: '15 min',
+              url: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
             },
           ],
         },

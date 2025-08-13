@@ -96,7 +96,7 @@
             <button (click)="markComplete(course)" class="px-3 py-1 bg-green-600 text-white rounded text-sm hover:bg-green-500">
               Mark Complete
             </button>
-            <a [routerLink]="['/coursevideo', course.id]" class="ml-auto text-indigo-600 text-sm hover:underline">Open Course</a>
+            <a [routerLink]="['/courseplayer', course.id]" class="ml-auto text-indigo-600 text-sm hover:underline">Open Course</a>
           </div>
 
           @if (showCourseDetailsId === course.id) {

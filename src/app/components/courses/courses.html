@@ -1,30 +1,35 @@
 <section class="max-w-7xl mx-auto px-4 py-10 grid grid-cols-1 lg:grid-cols-4 gap-6">
   
   <!-- Filter Sidebar -->
-  <aside class="lg:col-span-1">
+  <!-- <aside class="lg:col-span-1">
     <app-filter-sidebar
       [filters]="filters()"
       (filtersChanged)="applyFilters($event)">
     </app-filter-sidebar>
-  </aside>
+  </aside> -->
 
   <!-- Courses Content -->
   <div class="lg:col-span-3 space-y-6">
     
     <!-- If a course is selected -->
-    @if (selectedCourseId()) {
-      <app-course-details
+    <!-- @if (selectedCourseId()) { -->
+      <!-- <app-course-details
         (back)="clearSelection()">
-      </app-course-details>
+      </app-course-details> -->
 
-      <app-course-video-player ></app-course-video-player>
+      <!-- <app-course-video-player ></app-course-video-player>
 
       <app-course-progress [progress]="31"></app-course-progress>
-    }
+     -->
+      <!-- } -->
 
     <!-- If no course is selected -->
 
-<app-course-list [courses]="courses"></app-course-list>
 
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  @for (course of courses; track course.id) {
+    <app-course-card [course]="course"></app-course-card>
+  }
+</div>
   </div>
 </section>

@@ -17,16 +17,11 @@
     <!-- السعر مع الخصم -->
     <div class="flex justify-between items-center">
       <span class="text-indigo-600 font-bold">
-        @if(course.isDiscountValid){
-          {{ course.totalAmountAfterDiscount | currency }}
-          <span class="line-through text-gray-400 text-sm ml-1">
-            {{ course.totalAmount | currency }}
-          </span>
-      
+        @if(course.discountValue === 0){
+          {{ course.totalAmount}}
         } 
         @else{
-                    {{ course.totalAmountAfterDiscount | currency }}
-
+            ${{ course.totalAmount - course.discountValue}}
           <span class="line-through text-gray-400 text-sm ml-1">
             {{ course.totalAmount | currency }}
           </span>

@@ -24,49 +24,39 @@ import { CourseService } from '../../services/course-service';
   styleUrls: ['./courses.css'],
 })
 export class Courses {
-
   courses: ICourseDto[] = [];
-  // filteredCourses = signal<ICourseDto[]>([]);
-  // selectedCourseId = signal<number | null>(null);
+  filteredCourses: ICourseDto[] = [];
 
-  // filters = signal({
-  //   search: '',
-  //   category: '',
-  //   level: '',
-  //   duration: '',
-  // });
-  
-  constructor(private route: ActivatedRoute, private courseService: CourseService) {}
+  filters = {
+    search: '',
+    category: ''
+  };
+
+  constructor(
+    private route: ActivatedRoute,
+    private courseService: CourseService
+  ) {}
 
   ngOnInit() {
     this.courseService.getAllCourses().subscribe(courses => {
       this.courses = courses;
-      console.log('All courses:', courses);
-      // this.filteredCourses.set(courses); // نعمل نسخة للفلاتر
+      console.log('Courses loaded:', this.courses);
+      this.filteredCourses = courses; // في البداية نعرض الكل
     });
   }
 
-  // selectCourse(id: number) {
-  //   this.selectedCourseId.set(id);
-  // }
+  applyFilters(newFilters: any) {
+  this.filters = newFilters;
+  this.filteredCourses = this.courses.filter(course => {
+    return (
+      course.courseTitle.toLowerCase().includes(this.filters.search.toLowerCase()) &&
+      (this.filters.category ? course.categoryName === this.filters.category : true)
+    );
+  });
+}
 
-  // clearSelection() {
-  //   this.selectedCourseId.set(null);
-  // }
-
-  // applyFilters(filters: any) {
-  //   this.filters.set(filters);
-  //   console.log('Applied filters:', filters);
-
-  //   // const search = filters.search?.toLowerCase() || '';
-  //   // const category = filters.category || '';
-
-  //   // const filtered = this.courses()
-  //   //   .filter(c => 
-  //   //     c.courseTitle.toLowerCase().includes(search) &&
-  //   //     (category ? c.categoryName === category : true)
-  //   //   );
-
-  //   // this.filteredCourses.set(filtered);
-  // }
+  resetFilters() {
+    this.filters = { search: '', category: '' };
+    this.filteredCourses = [...this.courses];
+  }
 }

@@ -9,6 +9,8 @@ import { Certificates } from './components/student/certificates/certificates';
 import { CourseDetails } from './components/courses/course-details/course-details';
 import { CourseVideoPlayer } from './components/courses/course-video-player/course-video-player';
 import { CoursePlayer } from './components/courses/course-player/course-player';
+import { Login } from './components/pages/login/login';
+import { Signup } from './components/pages/signup/signup';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -20,6 +22,8 @@ export const routes: Routes = [
     path: 'courses',
     component: Courses
   },
+  { path: 'login', component: Login },
+  { path: 'signup', component: Signup },
   { path: 'coursedetails/:id', component: CourseDetails },
   { path: 'coursevideo/:id', component: CourseVideoPlayer },
   { path: 'courseplayer/:id', component: CoursePlayer },

@@ -33,7 +33,7 @@ export class Courses {
   filters = {
     search: '',
     category: '',
-    level: '',
+    level: 'all',
     duration: 0
   };
 
@@ -57,7 +57,7 @@ export class Courses {
     return (
       course.courseTitle.toLowerCase().includes(this.filters.search.toLowerCase()) &&
       (this.filters.category ? course.categoryName === this.filters.category : true) &&
-      (this.filters.level ? course.level === this.filters.level : true) &&
+      (this.filters.level !== 'all' ? course.level === this.filters.level : true) &&
       (this.filters.duration ? course.duration <= this.filters.duration : true)
     );
   });

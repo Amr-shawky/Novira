@@ -13,7 +13,7 @@ export class FilterSidebar {
   @Input() filters: any = {      // 👈 أضفنا Input هنا
     search: '',
     category: '',
-    level: '',
+    level: 'all',
     duration: 20
   };
   categoriesobj: IcategoryDTO[] = [];
@@ -27,7 +27,7 @@ export class FilterSidebar {
  }
   categories = this.categoriesobj.map(category => category.categoryName);
 
-  levels = ['Beginner', 'Intermediate', 'Advanced'];
+  levels = ['Beginner', 'Intermediate', 'Advanced','all'];
 
   onFiltersChange() {
     this.filtersChanged.emit({ ...this.filters });
@@ -37,8 +37,8 @@ export class FilterSidebar {
     this.filters = {
       search: '',
       category: '',
-      level: '',
-      duration: 20
+      level: 'all',
+      duration: 0
     };
     this.onFiltersChange();
   }

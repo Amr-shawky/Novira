@@ -18,7 +18,7 @@
     <div class="flex justify-between items-center">
       <span class="text-indigo-600 font-bold">
         @if(course.discountValue === 0){
-          {{ course.totalAmount}}
+          ${{ course.totalAmount}}
         } 
         @else{
             ${{ course.totalAmount - course.discountValue}}

@@ -32,7 +32,9 @@ export class Courses {
 
   filters = {
     search: '',
-    category: ''
+    category: '',
+    level: '',
+    duration: 0
   };
 
   constructor(
@@ -54,13 +56,15 @@ export class Courses {
   this.filteredCourses = this.courses.filter(course => {
     return (
       course.courseTitle.toLowerCase().includes(this.filters.search.toLowerCase()) &&
-      (this.filters.category ? course.categoryName === this.filters.category : true)
+      (this.filters.category ? course.categoryName === this.filters.category : true) &&
+      (this.filters.level ? course.level === this.filters.level : true) &&
+      (this.filters.duration ? course.duration <= this.filters.duration : true)
     );
   });
 }
 
   resetFilters() {
-    this.filters = { search: '', category: '' };
+    this.filters = { search: '', category: '' , level: '', duration: 0 };
     this.filteredCourses = [...this.courses];
   }
 }

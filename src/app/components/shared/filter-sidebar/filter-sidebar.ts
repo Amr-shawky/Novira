@@ -1,6 +1,8 @@
+import { IcategoryDTO } from './../../../interfaces/icategory-dto';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Input } from '@angular/core';
+import { CategoryServices } from '../../../services/category/category-services';
 @Component({
   selector: 'app-filter-sidebar',
   imports: [FormsModule],
@@ -14,10 +16,17 @@ export class FilterSidebar {
     level: '',
     duration: 20
   };
+  categoriesobj: IcategoryDTO[] = [];
   
- @Output() filtersChanged = new EventEmitter<any>();
+  @Output() filtersChanged = new EventEmitter<any>();
+  constructor(private categoryService: CategoryServices) {
+    this.categoryService.getAllCategories().subscribe((data) => {
+      this.categoriesobj = data;
+      console.log('Categories loaded:', this.categoriesobj);
+    });
+ }
+  categories = this.categoriesobj.map(category => category.categoryName);
 
-  categories = ['Web Development', 'Design', 'Data Science', 'Marketing'];
   levels = ['Beginner', 'Intermediate', 'Advanced'];
 
   onFiltersChange() {

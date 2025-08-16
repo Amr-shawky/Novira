@@ -7,8 +7,9 @@ import { Config } from '../configuration/config';
 @Injectable({
   providedIn: 'root'
 })
+//http://localhost:27674/api/Course
 export class CourseService {
-  //http://localhost:27674/api/Course
+  
   private apiUrl = `${Config.BaseUrl}/api/Course`;
 
   constructor(private http: HttpClient) {}

@@ -38,6 +38,7 @@ export class Login {
           // 👇 نخزن بيانات اليوزر في GlobalInfo
           if (response.userinfo) {
             this.globalInfo.setUserInfo({
+              userId: response.userinfo.id, 
               userName: response.userinfo.username, // تأكد من اسم الفيلد من الـ API
               name: response.userinfo.name,
               email: response.userinfo.email,

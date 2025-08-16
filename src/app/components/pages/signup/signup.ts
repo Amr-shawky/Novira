@@ -37,6 +37,7 @@ export class Signup {
 
           // 👇 هنا بنخزن بيانات اليوزر في GlobalInfo
           this.globalInfo.setUserInfo({
+            userId: res.userId,
             userName,
             name,
             email

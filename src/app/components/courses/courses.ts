@@ -7,7 +7,7 @@ import { FilterSidebar } from '../shared/filter-sidebar/filter-sidebar';
 import { ActivatedRoute } from '@angular/router';
 import { CourseCard } from './course-card/course-card';
 import { ICourseDto } from '../../interfaces/icourse-dto';
-import { CourseService } from '../../services/course-service';
+import { CourseService } from '../../services/course/course-service';
 
 @Component({
   selector: 'app-courses',

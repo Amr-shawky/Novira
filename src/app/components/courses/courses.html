@@ -9,8 +9,7 @@
   </aside>
 
   <!-- Courses Content -->
-  <div class="lg:col-span-3 space-y-6">
-    
+  <div class="lg:col-span-3 space-y-6">    
     <!-- If a course is selected -->
     <!-- @if (selectedCourseId()) { -->
       <!-- <app-course-details
@@ -25,11 +24,17 @@
 
     <!-- If no course is selected -->
 
-
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-  @for (course of courses; track course.id) {
-    <app-course-card [course]="course"></app-course-card>
-  }
+    @if (isLoading()) {
+      <div class="flex justify-center items-center h-40">
+        <app-spinner [size]="90" color="text-rose-500" label="Loading courses..." />
+      </div>
+    } @else {
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        @for (course of filteredCourses; track course.id) {
+          <app-course-card [course]="course"></app-course-card>
+        }
+      </div>
+    }
+<!-- das -->
 </div>
-  </div>
 </section>

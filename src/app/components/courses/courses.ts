@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CourseCard } from './course-card/course-card';
 import { ICourseDto } from '../../interfaces/icourse-dto';
 import { CourseService } from '../../services/course/course-service';
+import { Spinner } from '../shared/spinner/spinner';
 
 @Component({
   selector: 'app-courses',
@@ -18,7 +19,8 @@ import { CourseService } from '../../services/course/course-service';
     CourseVideoPlayer,
     CourseProgress,
     FilterSidebar,
-    CourseCard
+    CourseCard,
+    Spinner
   ],
   templateUrl: './courses.html',
   styleUrls: ['./courses.css'],
@@ -26,6 +28,7 @@ import { CourseService } from '../../services/course/course-service';
 export class Courses {
   courses: ICourseDto[] = [];
   filteredCourses: ICourseDto[] = [];
+  isLoading = signal(true); // ✅ add loading state
 
   filters = {
     search: '',
@@ -42,6 +45,7 @@ export class Courses {
       this.courses = courses;
       console.log('Courses loaded:', this.courses);
       this.filteredCourses = courses; // في البداية نعرض الكل
+      this.isLoading.set(false); // ✅ stop loading
     });
   }
 

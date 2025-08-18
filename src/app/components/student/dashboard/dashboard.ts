@@ -1,19 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { CourseCard } from "../../courses/course-card/course-card";
+import { ICourseDto } from '../../../interfaces/icourse-dto';
+import { CourseService } from '../../../services/course/course-service';
+import { EnrolledCourses } from '../../../services/enrolledCourses/enrolled-courses';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [RouterLink],
+  imports: [RouterLink, CourseCard],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css'
 })
-export class Dashboard {
+export class Dashboard implements OnInit {
   user = {
     name: 'Amr Shawky',
     avatarUrl: '',
     role: 'student'
   };
-
+  courses : ICourseDto[] = [];
+  constructor(private enrolledCourses: EnrolledCourses) {}
+  ngOnInit() {
+    this.enrolledCourses.getAllenrolledCourses().subscribe({
+      next: (courses) => {
+        this.courses = courses;
+      },
+      error: (err) => {
+        console.error('Error fetching courses', err);
+      }
+    });
+  }
   // إحصائيات مختصرة
   stats = {
     courses: 6,
@@ -23,80 +38,6 @@ export class Dashboard {
   };
 
   // كورسات تجريبية
-  courses = [
-    {
-      id: 1,
-      title: 'Mastering Angular for Beginners',
-      instructor: 'John Doe',
-      image: 'assets/courseimg1.webp',
-      rating: 5,
-      reviews: 120,
-      price: 49.99,
-      description: 'Learn Angular step-by-step from the basics to advanced concepts.',
-      lastActivity: '2 days ago',
-      progress: 42
-    },
-    {
-      id: 2,
-      title: 'React Fundamentals',
-      instructor: 'Jane Smith',
-      image: 'assets/courseimg2.webp',
-      rating: 4,
-      reviews: 85,
-      price: 39.99,
-      description: 'Build modern web apps with React and master component-based architecture.',
-      lastActivity: '1 week ago',
-      progress: 72
-    },
-    {
-      id: 3,
-      title: 'Node.js API Development',
-      instructor: 'Mike Johnson',
-      image: 'assets/nodejs.png',
-      rating: 5,
-      reviews: 200,
-      price: 59.99,
-      description: 'Create robust backends using Node.js, Express, and MongoDB.',
-      lastActivity: '2 days ago',
-      progress: 90
-    },
-    {
-      id: 4,
-      title: 'Python for Data Science',
-      instructor: 'Emily Davis',
-      image: 'assets/courseimg4.jpeg',
-      rating: 3,
-      reviews: 150,
-      price: 44.99,
-      description: 'Analyze data and build machine learning models with Python.',
-      lastActivity: '1 week ago',
-      progress: 25
-    },
-    {
-      id: 5,
-      title: 'Web Development Bootcamp',
-      instructor: 'Chris Lee',
-      image: 'assets/courseimg5.jpeg',
-      rating: 4,
-      reviews: 300,
-      price: 59.99,
-      description: 'Become a full-stack web developer with this comprehensive bootcamp.',
-      lastActivity: '2 weeks ago',
-      progress: 100
-    },
-    {
-      id: 6,
-      title: 'Introduction to Machine Learning',
-      instructor: 'David Brown',
-      image: 'assets/courseimg6.jpeg',
-      rating: 5,
-      reviews: 180,
-      price: 54.99,
-      description: 'Learn the fundamentals of machine learning and data analysis.',
-      lastActivity: '1 week ago',
-      progress: 69
-    }
-  ];
 
   notifications = [
     { id: 1, text: 'New lesson released in Mastering Angular', time: '3h' },

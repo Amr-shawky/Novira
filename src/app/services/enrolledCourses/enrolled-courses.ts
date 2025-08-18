@@ -7,8 +7,9 @@ import { GlobalInfo } from '../global/global-info';
 @Injectable({
   providedIn: 'root'
 })
-export class CourseService {
-  private apiUrl = `${Config.BaseUrl}/api/Course`;
+export class EnrolledCourses {
+  
+  private apiUrl = `${Config.BaseUrl}/api/Course/user/enrolled`;
 
   constructor(private http: HttpClient, private globalInfo: GlobalInfo) {}
 
@@ -20,12 +21,11 @@ export class CourseService {
     });
   }
 
-  getAllCourses(): Observable<any> {
+  getAllenrolledCourses(): Observable<any> {
     return this.http.get<any>(this.apiUrl, { headers: this.getAuthHeaders() });
   }
 
-  getCourseById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/${id}`, { headers: this.getAuthHeaders() });
-  }
+  // getCourseById(id: number): Observable<any> {
+  //   return this.http.get<any>(`${this.apiUrl}/${id}`, { headers: this.getAuthHeaders() });
+  // }
 }
-

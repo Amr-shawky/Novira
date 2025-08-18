@@ -4,6 +4,7 @@ import { CourseCard } from "../../courses/course-card/course-card";
 import { ICourseDto } from '../../../interfaces/icourse-dto';
 import { CourseService } from '../../../services/course/course-service';
 import { EnrolledCourses } from '../../../services/enrolledCourses/enrolled-courses';
+import { count } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -30,20 +31,20 @@ export class Dashboard implements OnInit {
     });
   }
   // إحصائيات مختصرة
-  stats = {
-    courses: 6,
-    completedPercent: 57,
-    certificates: 1,
-    hours: 56
-  };
-
+  
   // كورسات تجريبية
 
   notifications = [
     { id: 1, text: 'New lesson released in Mastering Angular', time: '3h' },
     { id: 2, text: 'Certificate available for UI/UX Design', time: '2d' }
   ];
-
+  stats = {
+    courses: this.courses.length+1,
+    completedPercent: 57,
+    certificates: 1,
+    hours: 56
+  };
+  
   // UI state
   showNotifications = false;
   showCourseDetailsId: number | null = null;

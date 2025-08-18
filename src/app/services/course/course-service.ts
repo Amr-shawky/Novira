@@ -1,24 +1,30 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Config } from '../configuration/config';
-
+import { GlobalInfo } from '../global/global-info';
 
 @Injectable({
   providedIn: 'root'
 })
-//http://localhost:27674/api/Course
 export class CourseService {
-  
   private apiUrl = `${Config.BaseUrl}/api/Course`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private globalInfo: GlobalInfo) {}
+
+  private getAuthHeaders(): HttpHeaders {
+    const user = this.globalInfo.getUserInfo();
+    const token = user?.token || '';
+    return new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+  }
 
   getAllCourses(): Observable<any> {
-    return this.http.get<any>(this.apiUrl);
+    return this.http.get<any>(this.apiUrl, { headers: this.getAuthHeaders() });
   }
 
   getCourseById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/${id}`);
+    return this.http.get<any>(`${this.apiUrl}/${id}`, { headers: this.getAuthHeaders() });
   }
 }

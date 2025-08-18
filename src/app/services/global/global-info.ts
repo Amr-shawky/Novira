@@ -10,7 +10,7 @@ export class GlobalInfo {
 
   private getInitialUser() {
     const data = localStorage.getItem('userInfo');
-    return data ? JSON.parse(data) : {id: '', userName: '', name: '', email: '' };
+    return data ? JSON.parse(data) : {id: '', userName: '', name: '', email: '', token:''};
   }
 
   setUserInfo(user: any) {

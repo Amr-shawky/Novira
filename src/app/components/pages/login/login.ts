@@ -42,7 +42,8 @@ export class Login {
               userName: response.userinfo.username, // تأكد من اسم الفيلد من الـ API
               name: response.userinfo.name,
               email: response.userinfo.email,
-              avatarUrl: response.userinfo.avatarUrl || null
+              avatarUrl: response.userinfo.avatarUrl || null,
+              token: response.token || null
             });
           }
 

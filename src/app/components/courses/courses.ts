@@ -9,6 +9,7 @@ import { CourseCard } from './course-card/course-card';
 import { ICourseDto } from '../../interfaces/icourse-dto';
 import { CourseService } from '../../services/course/course-service';
 import { Spinner } from '../shared/spinner/spinner';
+import { Search } from '../../services/search/search';
 
 @Component({
   selector: 'app-courses',
@@ -39,7 +40,8 @@ export class Courses {
 
   constructor(
     private route: ActivatedRoute,
-    private courseService: CourseService
+    private courseService: CourseService,
+    private searchService: Search
   ) {}
 
   ngOnInit() {
@@ -49,6 +51,12 @@ export class Courses {
       this.filteredCourses = courses; // في البداية نعرض الكل
       this.isLoading.set(false); // ✅ stop loading
     });
+
+      // ✅ listen to search changes from navbar
+  this.searchService.search$.subscribe(term => {
+    this.filters.search = term;
+    this.applyFilters(this.filters);
+  });
   }
 
   applyFilters(newFilters: any) {

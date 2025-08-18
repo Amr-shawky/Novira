@@ -40,7 +40,8 @@ export class Signup {
             userId: res.userId,
             userName,
             name,
-            email
+            email,
+            token: res.token
           });
           console.log('🌍 Global User Info:', this.globalInfo.getUserInfo());
           alert('SignUp Success!');

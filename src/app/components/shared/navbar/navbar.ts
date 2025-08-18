@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { GlobalInfo } from '../../../services/global/global-info';
 import { ICourseDto } from '../../../interfaces/icourse-dto';
+import { Search } from '../../../services/search/search';
 
 @Component({
   selector: 'app-navbar',
@@ -22,7 +23,10 @@ export class Navbar implements OnInit {
   mobileMenuOpen = false;
   searchTerm = '';
   user: any = null;
-  constructor(private courseService: CourseService,private router: Router, private globalInfo: GlobalInfo) {}
+  constructor(private courseService: CourseService,private router: Router, 
+    private globalInfo: GlobalInfo,
+    private searchService: Search
+  ) {}
 
   courses:ICourseDto[] = [];
   filteredCourses: ICourseDto[] = [];
@@ -46,6 +50,7 @@ export class Navbar implements OnInit {
   }
 
   onSearchChange() {
+      this.searchService.setSearch(this.searchTerm); // ✅ send value to service
     const term = this.searchTerm.toLowerCase();
     this.filteredCourses = term
       ? this.courses.filter((c) => c.courseTitle.toLowerCase().includes(term))

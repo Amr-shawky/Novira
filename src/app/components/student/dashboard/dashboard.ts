@@ -24,6 +24,7 @@ export class Dashboard implements OnInit {
     this.enrolledCourses.getAllenrolledCourses().subscribe({
       next: (courses) => {
         this.courses = courses;
+        console.log('Enrolled courses:', this.courses);
       },
       error: (err) => {
         console.error('Error fetching courses', err);
